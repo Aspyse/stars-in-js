@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:300i|Lato');
+html,
+body {
+	padding: 0;
+	margin: 0;
+	background-color: white;
+}
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+nav {
+	width: 100%;
+	background-color: black;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	color: white;
+	padding: 0.6% 1.2%;
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 1.1em;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+a {
+	margin: 0 2.8% 0 0;
+	text-decoration: none;
+	color: white;
+}
+a:hover,
+#current {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+img {
+	position: absolute;
+	z-index: 200;
+	top: 10%;
+	right: 1%;
+	height: 80%;
+	transform: translate(-50%, 0);
+}
+#container {
+	width: 95vw;
+	height: 95vh;
+	margin: 0 auto 7%;
+	overflow: hidden;
+}
+header {
+	font-family: 'Cormorant Garamond', serif;
+	text-transform: lowercase;
+	font-size: 1.8em;
+	text-align: center;	color: white;
+	position: absolute;
+	z-index: 100;
+	top: 87%;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+canvas {
+	background-color: black;
+}
+article {
+	text-align: justify;
+	width: 35%;
+	margin: 0 auto;
+}
+h1,
+h2 {
+	font-family: 'Cormorant Garamond', serif;
+	text-transform: lowercase;
+	font-size: 1.7em;
+	text-align: center;
+	margin-top: 4%;
+}
+h2 {
+	font-size: 1.4em;
+}
+p {
+	font-family: 'Lato', sans-serif;
+}
+#resources {
+	background-color: black;
+	color: white;
+	width: 95vw;
+	position: relative;
+	top: 0;
+	left: -30vw;
+	padding: 1% 87.5%;
+	margin-top: 20%;
+}
