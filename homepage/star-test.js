@@ -1,6 +1,6 @@
 var canvas = document.querySelector('canvas'),
 	ctx = canvas.getContext('2d'),
-	dd = 0.05/60,
+	dd = 0.05,
 	mouseX = 0,
 	mouseY = 0,
 	starCount = 400,
