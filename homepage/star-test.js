@@ -13,7 +13,7 @@ function Star(x, y, level) {
 	this.y = y;
 	this.level = level;
 	this.orbit = (canvas.width/2)-x;
-	this.angle = Math.PI-0.1;
+	this.angle = Math.atan(x,y);
 	this.pMul = this.level/100;
 	this.draw = function() {
 		ctx.beginPath();
