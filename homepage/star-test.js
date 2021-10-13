@@ -3,14 +3,14 @@ var canvas = document.querySelector('canvas'),
 	dd = 0.05,
 	mouseX = 0,
 	mouseY = 0,
-	starCount = 250,
+	starCount = 400,
 	stars = [];
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-function Star(x, level) {
+function Star(x, y, level) {
 	this.x = x;
-	this.y = canvas.height;
+	this.y = y;
 	this.level = level;
 	this.orbit = (canvas.width/2)-x;
 	this.angle = Math.PI-0.1;
@@ -22,13 +22,12 @@ function Star(x, level) {
     	ctx.stroke();
 	}
 	this.update = function() {
-		if (this.y > canvas.height && this.x > canvas.width/2) {
-			star = new Star(Math.sqrt(Math.random())*(canvas.width/2)-100, Math.random()*10);
-		}
+		if (this.y > canvas.height && this.x > canvas.width/2)
+			star = new Star(Math.random()*(canvas.width/2)-100, Math.random()*(canvas.height), Math.random()*10);
 		this.angle += Math.acos(1-Math.pow(dd/(this.orbit/(this.level/2)),2)/2);
-        this.x = canvas.width/2 + this.orbit * Math.cos(this.angle)-mouseX*this.pMul;
-        this.y = canvas.height + this.orbit * Math.sin(this.angle)-mouseY*this.pMul;
-        this.draw();
+        	this.x = canvas.width/2 + this.orbit * Math.cos(this.angle)-mouseX*this.pMul;
+        	this.y = canvas.height + this.orbit * Math.sin(this.angle)-mouseY*this.pMul;
+        	this.draw();
 	}
 }
 function hoverSize() {
@@ -57,8 +56,7 @@ function hoverLines() {
 }
 
 for (i = 0; i < starCount; i++) {
-	stars[i] = new Star(Math.sqrt(Math.random())*(canvas.width/2)-100, Math.random()*10)
-	stars[i].angle = Math.random()*8-4;
+	stars[i] = new Star(Math.random()*(canvas.width/2)-100, Math.random()*(canvas.height), Math.random()*10)
 }
 const measure = (x1, x2, y1, y2) => {
 	return Math.sqrt(Math.pow(x1-x2, 2)+Math.pow(y1-y2, 2));
