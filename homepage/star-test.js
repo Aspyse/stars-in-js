@@ -3,31 +3,37 @@ var canvas = document.querySelector('canvas'),
 	dd = 0.05,
 	mouseX = 0,
 	mouseY = 0,
-	starCount = 400,
+	starCount = 250,
 	stars = [];
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-function Star(x, y, level) {
+const measure = (x1, x2, y1, y2) => {
+	return Math.sqrt(Math.pow(x1-x2, 2)+Math.pow(y1-y2, 2));
+}
+function Star(x, y, level, index) {
 	this.x = x;
 	this.y = y;
 	this.level = level;
-	this.orbit = (canvas.width/2)-x;
-	this.angle = Math.PI-0.1;
+	this.radius = measure(canvas.width/2, this.x, canvas.height, this.y);
+	this.angle = Math.atan((canvas.height-this.y)/(canvas.width/2-this.x));
 	this.pMul = this.level/100;
+	this.index = index;
 	this.draw = function() {
 		ctx.beginPath();
-    	ctx.arc(this.x, this.y, this.brightness, 0, Math.PI*2, false);
-    	ctx.strokeStyle = "white";
-    	ctx.stroke();
+    ctx.arc(this.x, this.y, this.brightness, 0, Math.PI*2, false);
+    ctx.strokeStyle = "white";
+    ctx.stroke();
 	}
 	this.update = function() {
-		if (this.y > canvas.height && this.x > canvas.width/2)
-			star = new Star(Math.random()*(canvas.width/2)-100, Math.random()*(canvas.height), Math.random()*10);
-		this.angle += dd;
-        	this.x = canvas.width/2 + this.orbit * Math.cos(this.angle)-mouseX*this.pMul;
-        	this.y = canvas.height + this.orbit * Math.sin(this.angle)-mouseY*this.pMul;
-        	this.draw();
+		if (this.y > canvas.height && this.x > canvas.width/2) {
+			this.angle -= Math.PI;
+		}
+		this.angle += Math.acos(1-Math.pow(dd/(this.radius/(this.level/2)),2)/2);
+		console.log(this.angle);
+    this.x = canvas.width/2 + this.radius*Math.cos(this.angle) - (mouseX*this.pMul);
+    this.y = canvas.height + this.radius*Math.sin(this.angle) - (mouseY*this.pMul);
+    this.draw();
 	}
 }
 function hoverSize() {
@@ -56,10 +62,8 @@ function hoverLines() {
 }
 
 for (i = 0; i < starCount; i++) {
-	stars[i] = new Star(Math.random()*(canvas.width/2)-100, Math.random()*(canvas.height), Math.random()*10);
-}
-const measure = (x1, x2, y1, y2) => {
-	return Math.sqrt(Math.pow(x1-x2, 2)+Math.pow(y1-y2, 2));
+	stars[i] = new Star(Math.random()*canvas.width, Math.random()*canvas.height, Math.random()*10, i);
+	//stars[i].angle = Math.atan(stars[i].y/stars[i].x)*180/Math.PI;
 }
 const animate = () => {
 	setTimeout(function () {
