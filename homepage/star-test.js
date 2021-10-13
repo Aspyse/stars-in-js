@@ -23,7 +23,7 @@ function Star(x, level) {
 	}
 	this.update = function() {
 		if (this.y > canvas.height && this.x > canvas.width/2) {
-			star = new Star(Math.random()*(canvas.width/2)-100, Math.random()*10);
+			star = new Star(Math.sqrt(Math.random())*(canvas.width/2)-100, Math.random()*10);
 		}
 		this.angle += Math.acos(1-Math.pow(dd/(this.orbit/(this.level/2)),2)/2);
         this.x = canvas.width/2 + this.orbit * Math.cos(this.angle)-mouseX*this.pMul;
