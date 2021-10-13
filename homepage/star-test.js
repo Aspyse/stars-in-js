@@ -1,9 +1,9 @@
 var canvas = document.querySelector('canvas'),
 	ctx = canvas.getContext('2d'),
-	dd = 0.05,
+	dd = 0.05/60,
 	mouseX = 0,
 	mouseY = 0,
-	starCount = 4000,
+	starCount = 400,
 	stars = [];
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -57,7 +57,7 @@ function hoverLines() {
 
 for (i = 0; i < starCount; i++) {
 	stars[i] = new Star(Math.random()*(canvas.width/2)-100, Math.random()*(canvas.height), Math.random()*10);
-	stars[i].angle = Math.atan(stars[i].y, stars[i].x);
+	stars[i].angle = Math.random();
 }
 const measure = (x1, x2, y1, y2) => {
 	return Math.sqrt(Math.pow(x1-x2, 2)+Math.pow(y1-y2, 2));
