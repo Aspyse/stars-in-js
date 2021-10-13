@@ -57,7 +57,7 @@ function hoverLines() {
 }
 
 for (i = 0; i < starCount; i++) {
-	stars[i] = new Star(Math.sqrt(Math.random())*(canvas.width/2)-100, Math.random()*10)
+	stars[i] = new Star(Math.random()*(canvas.width/2)-100, Math.random()*10)
 	stars[i].angle = Math.random()*8-4;
 }
 const measure = (x1, x2, y1, y2) => {
